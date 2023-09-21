@@ -29,4 +29,8 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    public boolean isDirection(Direction direction){
+        return direction.getValue() == this.direction.getValue();
+    }
 }

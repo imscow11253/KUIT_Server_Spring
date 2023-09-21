@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,6 +70,31 @@ class LadderGameTest {
 
         //then
         assertEquals(0, ladderGame.run(position));
+    }
+
+    @DisplayName("*의 위치가 없는 출력")
+    @Test
+    void 사다리_프린트_확인_노드_위치_미포함(){
+        //when
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+
+        ladderCreator.drawLine(Position.of(0),Position.of(0));
+        ladderCreator.drawLine(Position.of(1),Position.of(1));
+        ladderCreator.drawLine(Position.of(2),Position.of(0));
+
+        //given
+        char[][] ladderString = ladderGame.getLadderPrint(Position.of(0)).getLadder();
+        char[] ladderStringRow1 = {'\u0000','1','\u0000','-','1','\u0000','\u0000','0','\u0000','\u0000','0','\u0000'};
+        char[] ladderStringRow2 = {'\u0000','0','\u0000','\u0000','1','\u0000','-','1','\u0000','\u0000','0','\u0000'};
+
+        //then
+        assertArrayEquals(ladderStringRow1, ladderString[0]);
+        assertArrayEquals(ladderStringRow2, ladderString[1]);
+        assertArrayEquals(ladderStringRow1, ladderString[2]);
     }
 
 }

@@ -27,6 +27,35 @@ public class Row {
         nodes[startPosition.getValue()] = Node.of(direction);
     }
 
+    public NaturalNumber getCol(){
+        return NaturalNumber.of(nodes.length);
+    }
+
+    public char[] getRowString(){
+        return setRowString();
+    }
+
+    private char[] setRowString(){
+        char[] rowString = new char[nodes.length*3];
+        for(int i =0;i<nodes.length;i++){
+            int index = i*3+1;
+            if(nodes[i].isDirection(Direction.LEFT)){
+                rowString[index-1] = '-';
+                rowString[index] = '1';
+                continue;
+            }
+            if(nodes[i].isDirection(Direction.RIGHT)){
+                rowString[index] = '1';
+                continue;
+            }
+            if(nodes[i].isDirection(Direction.NONE)){
+                rowString[index] = '0';
+                continue;
+            }
+        }
+        return rowString;
+    }
+
     private void validatePosition(Position position) {
         if (position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
