@@ -1,12 +1,13 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.LadderCreatorInterface;
 
 public class LadderGame {
 
-    private final LadderCreator ladderCreator;
+    private final LadderCreatorInterface ladderCreator;
 
-    public LadderGame(LadderCreator ladderCreator) {
+    public LadderGame(LadderCreatorInterface ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 
@@ -16,9 +17,9 @@ public class LadderGame {
         return ladderRunner.run(position);
     }
 
-    public LadderString getLadderPrint(Position position){
+    public LadderString getLadderPrint(){
         LadderPrinter ladderPrinter = new LadderPrinter(ladderCreator.getRows());
-        return ladderPrinter.getLadderPrint(position);
+        return ladderPrinter.getLadderPrint();
     }
 
 }

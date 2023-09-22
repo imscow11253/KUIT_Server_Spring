@@ -7,8 +7,8 @@ public class LadderPrinter {
         this.rows = rows;
     }
 
-    public LadderString getLadderPrint(Position position) {
-        LadderString ladderString = new LadderString(NaturalNumber.of(rows.length), rows[position.getValue()].getCol());
+    public LadderString getLadderPrint() {
+        LadderString ladderString = new LadderString(NaturalNumber.of(rows.length), rows[0].getCol());
         for (int i = 0; i < rows.length; i++) {
             ladderString.setRowString(Position.of(i), rows[i].getRowString());
         }
