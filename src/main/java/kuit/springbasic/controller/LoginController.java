@@ -1,4 +1,4 @@
-package kuit.springbasic.web.controller;
+package kuit.springbasic.controller;
 
 public class LoginController {
 

@@ -1,4 +1,4 @@
-package kuit.springbasic.web.domain;
+package kuit.springbasic.domain;
 
 public class User {
     private String userId;
