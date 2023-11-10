@@ -2,10 +2,10 @@ package kuit2.server.common.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kuit2.server.common.exception.jwt.JwtExpiredTokenException;
-import kuit2.server.common.exception.jwt.JwtInvalidTokenException;
-import kuit2.server.common.exception.jwt.JwtNoTokenException;
-import kuit2.server.common.exception.jwt.JwtUnsupportedTokenException;
+import kuit2.server.common.exception.jwt.unauthorized.JwtExpiredTokenException;
+import kuit2.server.common.exception.jwt.unauthorized.JwtInvalidTokenException;
+import kuit2.server.common.exception.jwt.bad_request.JwtNoTokenException;
+import kuit2.server.common.exception.jwt.bad_request.JwtUnsupportedTokenException;
 import kuit2.server.service.UserService;
 import kuit2.server.util.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
