@@ -3,10 +3,7 @@ package kuit2.server.service;
 import kuit2.server.common.exception.DatabaseException;
 import kuit2.server.common.exception.UserException;
 import kuit2.server.dao.UserDao;
-import kuit2.server.dto.user.PostLoginRequest;
-import kuit2.server.dto.user.PostLoginResponse;
-import kuit2.server.dto.user.PostUserRequest;
-import kuit2.server.dto.user.PostUserResponse;
+import kuit2.server.dto.user.*;
 import kuit2.server.util.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +46,8 @@ public class UserService {
         return new PostUserResponse(userId, jwt);
     }
 
-    public long findUserIdByEmail(String email) {
-        return userDao.findUserIdByEmail(email);
+    public long getUserIdByEmail(String email) {
+        return userDao.getUserIdByEmail(email);
     }
 
     public PostLoginResponse login(PostLoginRequest postLoginRequest, long userId) {
@@ -66,6 +63,8 @@ public class UserService {
     }
 
     public void modifyUserStatus_dormant(long userId) {
+        log.info("[UserService.modifyUserStatus_dormant]");
+
         int affectedRows = userDao.modifyUserStatus_dormant(userId);
         if (affectedRows != 1) {
             throw new DatabaseException(DATABASE_ERROR);
@@ -73,6 +72,8 @@ public class UserService {
     }
 
     public void modifyUserStatus_deleted(long userId) {
+        log.info("[UserService.modifyUserStatus_deleted]");
+
         int affectedRows = userDao.modifyUserStatus_deleted(userId);
         if (affectedRows != 1) {
             throw new DatabaseException(DATABASE_ERROR);
@@ -80,11 +81,18 @@ public class UserService {
     }
 
     public void modifyNickname(long userId, String nickname) {
+        log.info("[UserService.modifyNickname]");
+
         validateNickname(nickname);
         int affectedRows = userDao.modifyNickname(userId, nickname);
         if (affectedRows != 1) {
             throw new DatabaseException(DATABASE_ERROR);
         }
+    }
+
+    public List<GetUserResponse> getUsers(String nickname, String email, String status) {
+        log.info("[UserService.getUsers]");
+        return userDao.getUsers(nickname, email, status);
     }
 
     private void validatePassword(String password, long userId) {
