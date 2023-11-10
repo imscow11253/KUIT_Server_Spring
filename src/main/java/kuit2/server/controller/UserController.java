@@ -51,4 +51,14 @@ public class UserController {
         }
         return new BaseResponse<>(userService.login(postLoginRequest, userId));
     }
+
+    /**
+     * 회원 휴면
+     */
+    @PatchMapping("/{userId}/dormant")
+    public BaseResponse<Object> modifyUserStatus_dormant(@PathVariable long userId) {
+        log.info("[UserController.modifyUserStatus_dormant]");
+        userService.modifyUserStatus_dormant(userId);
+        return new BaseResponse<>(null);
+    }
 }
