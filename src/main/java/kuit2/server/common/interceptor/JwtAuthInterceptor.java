@@ -6,6 +6,7 @@ import kuit2.server.common.exception.jwt.unauthorized.JwtExpiredTokenException;
 import kuit2.server.common.exception.jwt.unauthorized.JwtInvalidTokenException;
 import kuit2.server.common.exception.jwt.bad_request.JwtNoTokenException;
 import kuit2.server.common.exception.jwt.bad_request.JwtUnsupportedTokenException;
+import kuit2.server.service.AuthService;
 import kuit2.server.service.UserService;
 import kuit2.server.util.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
     private static final String JWT_TOKEN_PREFIX = "Bearer ";
 
     private final JwtProvider jwtProvider;
-    private final UserService userService;
+    private final AuthService authService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -36,7 +37,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         String email = jwtProvider.getPrincipal(accessToken);
         validatePayload(email);
 
-        long userId = userService.getUserIdByEmail(email);
+        long userId = authService.getUserIdByEmail(email);
         request.setAttribute("userId", userId);
         return true;
     }
