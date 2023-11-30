@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ServerApplication.iml" filepath="$PROJECT_DIR$/.idea/ServerApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ServerApplication.ServerApplication.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ServerApplication.ServerApplication.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kuit2.ServerApplication.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kuit2.ServerApplication.main.iml" />
     </modules>
   </component>
 </project>

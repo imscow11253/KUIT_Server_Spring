@@ -2,10 +2,12 @@ package kuit2.server.ServerApplication.dio;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-public class PostUserResponse {
-    private long login_Id;
-    private String jwt;
+public class ModifyNameResponse {
+    long user_id;
+    String responseName;
 }

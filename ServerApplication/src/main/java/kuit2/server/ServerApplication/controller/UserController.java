@@ -1,5 +1,6 @@
 package kuit2.server.ServerApplication.controller;
 
+import kuit2.server.ServerApplication.dio.LoginRequest;
 import kuit2.server.ServerApplication.dio.PostUserRequest;
 import kuit2.server.ServerApplication.dio.PostUserResponse;
 import kuit2.server.ServerApplication.exception.UserException;
@@ -35,6 +36,17 @@ public class UserController {
         }
 
         return new BaseResponse<>(this.userService.createUserService(postUserRequest));
+    }
+
+    @PostMapping("/login")
+    public BaseResponse<PostUserResponse> userLogin(@Validated @RequestBody LoginRequest loginRequest, BindingResult bindingResult){
+        log.info("userController.userLogin");
+
+        if(bindingResult.hasErrors()){
+            throw new UserException(INVALID_USER_VALUE, getErrorMessages(bindingResult));
+        }
+
+        return new BaseResponse<>(this.userService.loginService(loginRequest));
     }
 
 }

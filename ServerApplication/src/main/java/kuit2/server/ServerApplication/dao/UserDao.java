@@ -41,8 +41,42 @@ public class UserDao {
         return Boolean.TRUE.equals(this.jdbcTemplate.queryForObject(sql, boolean.class, name));
     }
 
+    public String getEmailByLoginId(String login_Id){
+        String sql = "SELECT email FROM `user` WHERE login_id=?";
+        return this.jdbcTemplate.queryForObject(sql, String.class, login_Id);
+    }
+
+    public boolean isThereLoginId(String login_id){
+        String sql = "SELECT EXISTS(SELECT login_id FROM `user` WHERE login_id=?)";
+        return Boolean.TRUE.equals(this.jdbcTemplate.queryForObject(sql, boolean.class, login_id));
+    }
+
+    public boolean matchPW(String login_id, String login_pw){
+        String sql = "SELECT login_pw FROM `user` WHERE login_id=?";
+        String user_pw = this.jdbcTemplate.queryForObject(sql, String.class, login_id);
+        return user_pw.equals(login_pw);
+    }
+
+    public long updateUserNameField(long user_id, String responseName){
+        String sql = "UPDATE `user` SET name=? WHERE user_id = ?";
+
+        this.jdbcTemplate.update(sql, responseName, user_id);
+        return user_id;
+    }
+
     public void updateUserIdField(){
         String sql = "SELECT user_id FROM `user` ORDER BY user_id DESC LIMIT 1";
         this.userId = this.jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public long getUseIdByLoginId(String login_id){
+        String sql = "SELECT user_id FROM `user` WHERE login_id = ?";
+        return this.jdbcTemplate.queryForObject(sql, long.class, login_id);
+    }
+
+
+    public long getUserIdByEmail(String email){
+        String sql = "SELECT user_id FROM `user` WHERE email = ?";
+        return this.jdbcTemplate.queryForObject(sql, long.class, email);
     }
 }
