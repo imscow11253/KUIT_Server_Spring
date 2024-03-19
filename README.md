@@ -1,3 +1,5 @@
+![image](https://github.com/imscow11253/KUIT_Server_Spring/assets/71692903/945a4942-b581-4758-af03-727f43dd78bb)
+
 # KUIT Backend-Server
 
 ## 건국대학교 컴퓨터공학부 동아리 KUIT Backend-Server 파트 미션수행을 위한 레포지토리입니다.
